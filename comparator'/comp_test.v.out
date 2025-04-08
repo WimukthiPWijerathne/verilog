@@ -1,0 +1,50 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_012F8D50 .scope module, "comp_test" "comp_test" 2 5;
+ .timescale -9 -12;
+v012FD8F8_0 .var "a", 0 0;
+v012FD950_0 .var "b", 0 0;
+v012FD9A8_0 .net "z", 0 0, L_012FDB50; 1 drivers
+S_012F8DD8 .scope module, "uut" "comp" 2 11, 3 1, S_012F8D50;
+ .timescale -9 -12;
+L_012F8E60 .functor NOT 1, v012FD8F8_0, C4<0>, C4<0>, C4<0>;
+L_012FDA00 .functor NOT 1, v012FD950_0, C4<0>, C4<0>, C4<0>;
+L_012FDA70 .functor AND 1, L_012F8E60, L_012FDA00, C4<1>, C4<1>;
+L_012FDB18 .functor AND 1, v012FD8F8_0, v012FD950_0, C4<1>, C4<1>;
+L_012FDB50 .functor OR 1, L_012FDA70, L_012FDB18, C4<0>, C4<0>;
+v012F1638_0 .net *"_s0", 0 0, L_012F8E60; 1 drivers
+v012F1690_0 .net *"_s2", 0 0, L_012FDA00; 1 drivers
+v012F16E8_0 .net *"_s4", 0 0, L_012FDA70; 1 drivers
+v012F3998_0 .net *"_s6", 0 0, L_012FDB18; 1 drivers
+v012F39F0_0 .net "a", 0 0, v012FD8F8_0; 1 drivers
+v012F3A48_0 .net "b", 0 0, v012FD950_0; 1 drivers
+v012F3AA0_0 .alias "z", 0 0, v012FD9A8_0;
+    .scope S_012F8D50;
+T_0 ;
+    %vpi_call 2 15 "$dumpfile", "compdump.vcd";
+    %vpi_call 2 16 "$dumpvars", 1'sb0, S_012F8D50;
+    %vpi_call 2 18 "$monitor", "a=%b, b=%b, z=%b", v012FD8F8_0, v012FD950_0, v012FD9A8_0;
+    %delay 10000, 0;
+    %set/v v012FD8F8_0, 0, 1;
+    %set/v v012FD950_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v012FD8F8_0, 0, 1;
+    %set/v v012FD950_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v012FD8F8_0, 1, 1;
+    %set/v v012FD950_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v012FD8F8_0, 1, 1;
+    %set/v v012FD950_0, 1, 1;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "comp_test.v";
+    "./comp.v";
