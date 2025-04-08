@@ -1,7 +1,9 @@
+//four bit comparator with three outputs
+
 module complthree
 (
-    input wire a,
-    input wire b,
+    input wire [3:0] a,
+    input wire [3:0] b,
     output reg a_eq_b,
     output reg a_ls_b,
     output reg a_gt_b
