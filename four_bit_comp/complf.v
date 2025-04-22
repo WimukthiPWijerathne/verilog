@@ -10,46 +10,47 @@ module compfl(
     
 
 );
-    reg [3:0] aa = [3:0] a;
-    reg [3:0] bb = [3:0] b;
   
-    wire t1,t2,t3;
+
+  
+    reg t1,t2,t3;
     always @(*) begin
 
-        if(a==b)begin
-            assign t1=1'b1;
-            assign t2=1'b0;    
-            assign t3=1'b0;
+        if(a[7:4]==b[7:4])begin
+            t1=1'b1;
+            t2=1'b0;    
+            t3=1'b0;
         end
-        else if(a>b)begin
-            assign t1=1'b0;
-            assign t2=1'b0;    
-            assign t3=1'b1;
+        else if(a[7:4]>b[7:4])begin
+            t1=1'b0;
+            t2=1'b0;    
+            t3=1'b1;
         end
         else begin
-            assign t1=1'b0;
-            assign t2=1'b1;    
-            assign t3=1'b0;
+            t1=1'b0;
+            t2=1'b1;    
+            t3=1'b0;
         end        
     end
     
     always @(t1,t2,t3) begin
+        
         if (t1==1'b1)begin
-            if(aa == bb)begin
+            if(a[3:0] == b[3:0])begin
             assign a_eq_b=1'b1;
             assign a_ls_b=1'b0;    
             assign a_gt_b=1'b0;
             end
         end
         else if(t2==1'b1)begin
-            if(aa< bb)begin
+            if(a[3:0]< b[3:0])begin
             assign a_eq_b=1'b0;
             assign a_ls_b=1'b0;    
             assign a_gt_b=1'b1;
             end
         end
         else begin
-            if(aa> bb)begin
+            if(a[3:0]>b[3:0])begin
             assign a_eq_b=1'b0;
             assign a_ls_b=1'b1;    
             assign a_gt_b=1'b0;
