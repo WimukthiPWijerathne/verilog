@@ -2,11 +2,11 @@
 
 //this is the first comparator that compares the most significant bits of two 4 bit numbers
 module compfl(
-    input wire [7:4] a,
-    input wire [7:4] b,
-    output wire a_eq_b,
-    output wire a_ls_b,
-    output wire a_gt_b
+    input wire [7:0] a,
+    input wire [7:0] b,
+    output reg a_eq_b,
+    output reg a_ls_b,
+    output reg a_gt_b
     
 
 );
